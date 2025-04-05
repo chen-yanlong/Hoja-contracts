@@ -17,7 +17,7 @@ contract SelfHappyBirthday is SelfVerificationRoot, Ownable {
     mapping(address => bool) public isBirthday;
 
     error RegisteredNullifier();
-    event Birthday(address indexed user)
+    event Birthday(address indexed user);
 
     constructor(
         address _identityVerificationHub, 
@@ -74,8 +74,8 @@ contract SelfHappyBirthday is SelfVerificationRoot, Ownable {
 
         if (_isWithinBirthdayWindow(result.revealedDataPacked)) {
             _nullifiers[result.nullifier] = true;
-            address(uint160(result.userIdentifier)
-            emit BirthDay(address(uint160(result.userIdentifier)));
+            isBirthday[address(uint160(result.userIdentifier))] = true;
+            emit Birthday(address(uint160(result.userIdentifier)));
         } else {
             revert("Not eligible: Not within 5 days of birthday");
         }
