@@ -12,20 +12,12 @@ import {CircuitAttributeHandler} from "@selfxyz/contracts/contracts/libraries/Ci
 import {CircuitConstants} from "@selfxyz/contracts/contracts/constants/CircuitConstants.sol";
 
 contract SelfHappyBirthday is SelfVerificationRoot, Ownable {
-    using SafeERC20 for IERC20;
-
-    IERC20 public immutable usdc;
-
-    // 100 dollar
-    // uint256 constant CLAIMABLE_AMOUNT = 100000000;
-    // 1 dollar
-    uint256 constant CLAIMABLE_AMOUNT = 1000000;
 
     mapping(uint256 => bool) internal _nullifiers;
-
-    event USDCClaimed(address indexed claimer, uint256 amount);
+    mapping(address => bool) public isBirthday;
 
     error RegisteredNullifier();
+    event Birthday(address indexed user)
 
     constructor(
         address _identityVerificationHub, 
@@ -49,9 +41,7 @@ contract SelfHappyBirthday is SelfVerificationRoot, Ownable {
             _ofacEnabled
         )
         Ownable(_msgSender())
-    {
-        usdc = IERC20(_token);
-    }
+    {}
 
     function verifySelfProof(
         IVcAndDiscloseCircuitVerifier.VcAndDiscloseProof memory proof
@@ -84,8 +74,8 @@ contract SelfHappyBirthday is SelfVerificationRoot, Ownable {
 
         if (_isWithinBirthdayWindow(result.revealedDataPacked)) {
             _nullifiers[result.nullifier] = true;
-            usdc.safeTransfer(address(uint160(result.userIdentifier)), CLAIMABLE_AMOUNT);
-            emit USDCClaimed(address(uint160(result.userIdentifier)), CLAIMABLE_AMOUNT);
+            address(uint160(result.userIdentifier)
+            emit BirthDay(address(uint160(result.userIdentifier)));
         } else {
             revert("Not eligible: Not within 5 days of birthday");
         }
@@ -119,11 +109,7 @@ contract SelfHappyBirthday is SelfVerificationRoot, Ownable {
             timeDifference = dobInThisYearTimestamp - currentTime;
         }
 
-        uint256 fiveDaysInSeconds = 5 days;
-        return timeDifference <= fiveDaysInSeconds;
-    }
-
-    function withdrawUSDC(address to, uint256 amount) external onlyOwner {
-        usdc.safeTransfer(to, amount);
+        uint256 oneDaysInSeconds = 1 days;
+        return timeDifference <= oneDaysInSeconds;
     }
 }
