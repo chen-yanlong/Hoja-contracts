@@ -27,23 +27,23 @@ const config: HardhatUserConfig = {
   },
   defaultNetwork: "hardhat",
   networks: {
-    celo: {
-      chainId: 42220,
-      url: process.env.CELO_RPC_URL || "https://forno.celo.org",
+    celo_alfajores: {
+      chainId: 44787,
+      url: process.env.CELO_RPC_URL || "https://alfajores-forno.celo-testnet.org/",
       accounts: [process.env.CELO_KEY as string],
     }
   },
   etherscan: {
     apiKey: {
-      celo: process.env.CELOSCAN_API_KEY as string,
+      celo_alfajores: process.env.CELOSCAN_API_KEY as string,
     },
     customChains: [
       {
-        network: "celo",
-        chainId: 42220,
+        network: "celo_alfajores", // Ensure this is the Testnet network
+        chainId: 44787, // Alfajores Testnet Chain ID
         urls: {
-          apiURL: "https://api.celoscan.io/api",
-          browserURL: "https://celoscan.io"
+          apiURL: "https://api.celoscan.io/api", // Testnet API URL
+          browserURL: "https://alfajores.celoscan.io", // Testnet Etherscan browser URL
         }
       }
     ]

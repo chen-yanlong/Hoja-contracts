@@ -1,0 +1,56 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "SelfVerificationRoot",
+  "sourceName": "@selfxyz/contracts/contracts/abstract/SelfVerificationRoot.sol",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "InvalidAttestationId",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "InvalidScope",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256[2]",
+              "name": "a",
+              "type": "uint256[2]"
+            },
+            {
+              "internalType": "uint256[2][2]",
+              "name": "b",
+              "type": "uint256[2][2]"
+            },
+            {
+              "internalType": "uint256[2]",
+              "name": "c",
+              "type": "uint256[2]"
+            },
+            {
+              "internalType": "uint256[21]",
+              "name": "pubSignals",
+              "type": "uint256[21]"
+            }
+          ],
+          "internalType": "struct IVcAndDiscloseCircuitVerifier.VcAndDiscloseProof",
+          "name": "proof",
+          "type": "tuple"
+        }
+      ],
+      "name": "verifySelfProof",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

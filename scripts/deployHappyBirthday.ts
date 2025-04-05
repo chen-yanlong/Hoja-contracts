@@ -54,7 +54,7 @@ async function main() {
   console.log("SelfHappyBirthday deployed to:", deployedAddress);
   
   console.log("To verify on Celoscan:");
-  console.log(`npx hardhat verify --network celo ${deployedAddress} ${identityVerificationHub} ${scope} ${attestationId} ${token} ${olderThanEnabled} ${olderThan} ${forbiddenCountriesEnabled} "[${forbiddenCountriesListPacked.join(',')}]" "[${ofacEnabled.join(',')}]"`);
+  console.log(`npx hardhat verify --network celo_alfajores ${deployedAddress} ${identityVerificationHub} ${scope} ${attestationId} ${token} ${olderThanEnabled} ${olderThan} ${forbiddenCountriesEnabled} "[${forbiddenCountriesListPacked.join(',')}]" "[${ofacEnabled.join(',')}]"`);
 }
 
 main()
